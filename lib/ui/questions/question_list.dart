@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:interview/data/api/questions_api.dart';
-import 'package:interview/models/question.dart';
-import 'package:interview/paginationer/paginationer.dart';
-import 'package:interview/paginationer/src/default_paginationer.dart';
+import '../../data/api/questions_api.dart';
+import '../../models/question.dart';
+import '../../paginationer/paginationer.dart';
 
 import 'question_item.dart';
-import 'package:interview/utils/utils.dart';
+import '../../utils/utils.dart';
 
 class QuestionList extends StatefulWidget {
   final ScrollController? scrollController;
@@ -23,7 +22,7 @@ class _QuestionListState extends State<QuestionList> {
     return Paginationer(
       primary: false,
       controller: widget.scrollController,
-      type: PaginationerType.ItemBased,
+      type: PaginationerType.itemBased,
       emptyChildren: const [Center(child: CircularProgressIndicator())],
       future: (currentPage) async {
         final data = await QuestionsApi.list(currentPage: currentPage);

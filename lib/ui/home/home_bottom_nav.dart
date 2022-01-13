@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:interview/providers/home_bottombar_prov.dart';
-import 'package:interview/utils/utils.dart';
+import '../../providers/home_bottombar_prov.dart';
+import '../../utils/utils.dart';
 
 class HomeBottomNav extends ConsumerWidget {
   const HomeBottomNav({Key? key}) : super(key: key);

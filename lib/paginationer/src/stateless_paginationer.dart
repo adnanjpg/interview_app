@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'paginationer_type.dart';
+
 import 'default_paginationer.dart';
+import 'paginationer_type.dart';
 
 /// this paginationer handles all scroll and loading events,
 /// but its difference from [Paginationer] is that
@@ -11,6 +12,7 @@ import 'default_paginationer.dart';
 ///
 class StatelessPaginationer<T> extends StatefulWidget {
   const StatelessPaginationer({
+    Key? key,
     required this.emptyChildren,
     required this.future,
     required this.builder,
@@ -21,15 +23,15 @@ class StatelessPaginationer<T> extends StatefulWidget {
     this.reverse = false,
     this.scrollDirection = Axis.vertical,
     this.loadOn,
-    this.key,
     this.controller,
     this.primary,
     this.pageStartFrom = 1,
     // keep it this way for now, to not break anything.
-    this.type = PaginationerType.ScrollBased,
-  }) : assert(type == PaginationerType.ScrollBased
+    this.type = PaginationerType.scrollBased,
+  })  : assert(type == PaginationerType.scrollBased
             ? (loadOn == null || loadOn >= 0.0 && loadOn <= 1.0)
-            : true);
+            : true),
+        super(key: key);
 
   /// will be inserted to the tree when
   /// we start loading, and will be removed
@@ -77,8 +79,6 @@ class StatelessPaginationer<T> extends StatefulWidget {
 
   final bool shrinkWrap;
 
-  final Key? key;
-
   final PaginationerType type;
 
   final bool? primary;
@@ -90,8 +90,9 @@ class StatelessPaginationer<T> extends StatefulWidget {
   final int pageStartFrom;
 
   @override
+  // ignore: no_logic_in_create_state
   State<StatelessPaginationer> createState() {
-    if (type == PaginationerType.ScrollBased) {
+    if (type == PaginationerType.scrollBased) {
       return _ScrollBased();
     } else {
       return _ItemBased();
@@ -100,7 +101,7 @@ class StatelessPaginationer<T> extends StatefulWidget {
 }
 
 bool _isNotEmpty(List? list) {
-  return list != null && list.length > 0;
+  return list != null && list.isNotEmpty;
 }
 
 class _ScrollBased<T> extends State<StatelessPaginationer<T>> {

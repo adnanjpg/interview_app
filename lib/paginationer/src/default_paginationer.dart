@@ -51,6 +51,7 @@ import 'paginationer_type.dart';
 /// {@endtemplate}
 class Paginationer extends StatefulWidget {
   const Paginationer({
+    Key? key,
     required this.emptyChildren,
     required this.future,
     this.initialWidgets,
@@ -59,14 +60,14 @@ class Paginationer extends StatefulWidget {
     this.reverse = false,
     this.scrollDirection = Axis.vertical,
     this.loadOn,
-    this.key,
     this.controller,
     this.primary,
     // keep it this way for now, to not break anything.
-    this.type = PaginationerType.ScrollBased,
-  }) : assert(type == PaginationerType.ScrollBased
+    this.type = PaginationerType.scrollBased,
+  })  : assert(type == PaginationerType.scrollBased
             ? (loadOn == null || loadOn >= 0.0 && loadOn <= 1.0)
-            : true);
+            : true),
+        super(key: key);
 
   /// will be inserted to the tree when
   /// we start loading, and will be removed
@@ -109,15 +110,14 @@ class Paginationer extends StatefulWidget {
 
   final bool shrinkWrap;
 
-  final Key? key;
-
   final PaginationerType type;
 
   final bool? primary;
 
   @override
+  // ignore: no_logic_in_create_state
   State<Paginationer> createState() {
-    if (type == PaginationerType.ScrollBased) {
+    if (type == PaginationerType.scrollBased) {
       return _ScrollBased();
     } else {
       return _ItemBased();
@@ -126,7 +126,7 @@ class Paginationer extends StatefulWidget {
 }
 
 bool _isNotEmpty(List? list) {
-  return list != null && list.length > 0;
+  return list != null && list.isNotEmpty;
 }
 
 class _ScrollBased extends State<Paginationer> {

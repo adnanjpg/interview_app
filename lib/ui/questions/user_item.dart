@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:interview/models/question.dart';
-import 'package:interview/models/question_owner.dart';
+import '../../models/question.dart';
+import '../../models/question_owner.dart';
 import 'package:intl/intl.dart';
 
 class UserItem extends StatelessWidget {
-  QuestionOwner? owner;
+  final QuestionOwner? owner;
   final Question? model;
   final bool isMe;
-  UserItem({this.model, this.owner, required this.isMe, Key? key})
+  const UserItem({this.model, this.owner, required this.isMe, Key? key})
       : assert(
           model != null || owner != null,
         ),
@@ -15,18 +15,18 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    owner ??= model?.owner;
-    final imgWid = _UserImg(owner);
+    final _owner = owner ?? model?.owner;
+    final imgWid = _UserImg(_owner);
     return ListTile(
       leading: isMe ? null : imgWid,
-      title: Text(owner?.displayName ?? ''),
+      title: Text(_owner?.displayName ?? ''),
       subtitle: Builder(
         builder: (context) {
           String out = '';
 
           if (isMe) {
             // data does not provide bio, so we are using accountId
-            out = owner?.accountId.toString() ?? '';
+            out = _owner?.accountId.toString() ?? '';
           } else {
             final f = DateFormat('yyyy-MM-dd');
             final dt = model?.lastEditDate;

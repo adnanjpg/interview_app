@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:interview/ui/profiles/profiles_list.dart';
-import 'package:interview/ui/questions/question_list.dart';
-import 'package:interview/utils/utils.dart';
+import '../../profiles/profiles_list.dart';
+import '../../questions/question_list.dart';
+import '../../../utils/utils.dart';
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({Key? key}) : super(key: key);

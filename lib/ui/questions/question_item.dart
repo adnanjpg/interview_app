@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:interview/models/question.dart';
-import 'package:interview/ui/questions/user_item.dart';
-import 'package:interview/utils/utils.dart';
+import '../../models/question.dart';
+import 'user_item.dart';
+import '../../utils/utils.dart';
 
 class QuestionItem extends StatelessWidget {
   final Question model;

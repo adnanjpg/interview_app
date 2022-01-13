@@ -1,4 +1,4 @@
-import 'package:interview/models/question_owner.dart';
+import 'question_owner.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'question.g.dart';
 
@@ -48,6 +48,8 @@ class Question {
 
   factory Question.fromJson(Map<String, dynamic> json) =>
       _$QuestionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuestionToJson(this);
 
   static DateTime? _dateTimeFromJson(int? inp) =>
       inp != null ? DateTime.fromMillisecondsSinceEpoch(inp) : null;

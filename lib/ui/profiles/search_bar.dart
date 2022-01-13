@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interview/utils/utils.dart';
+import '../../utils/utils.dart';
 
 class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   const SearchBar({Key? key}) : super(key: key);

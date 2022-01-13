@@ -31,4 +31,6 @@ class QuestionOwner {
 
   factory QuestionOwner.fromJson(Map<String, dynamic> json) =>
       _$QuestionOwnerFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QuestionOwnerToJson(this);
 }

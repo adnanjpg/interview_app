@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:interview/models/profile_model.dart';
-import 'package:interview/utils/utils.dart';
+import '../../models/profile_model.dart';
+import '../../utils/utils.dart';
 
 class ProfileItem extends StatelessWidget {
   final ProfileModel model;
@@ -66,7 +66,7 @@ class ProfileItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       // fromHeight use double.infinity as width and 40 is the height
-                      minimumSize: Size.fromHeight(40),
+                      minimumSize: const Size.fromHeight(40),
                     ),
                     onPressed: () {},
                     child: Text(

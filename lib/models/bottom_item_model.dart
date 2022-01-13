@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:interview/enums/home_bottombar_items.dart';
+import '../enums/home_bottombar_items.dart';
 export 'package:interview/enums/home_bottombar_items.dart';
 
 class BottomItemModel {
