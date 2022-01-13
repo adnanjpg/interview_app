@@ -9,13 +9,13 @@ part of 'question_owner.dart';
 QuestionOwner _$QuestionOwnerFromJson(Map<String, dynamic> json) =>
     QuestionOwner(
       accountId: json['account_id'] as int,
-      reputation: json['reputation'] as String,
+      reputation: json['reputation'] as int?,
       userId: json['user_id'] as int,
-      userType: json['user_type'] as String,
-      acceptRate: json['accept_rate'] as int,
-      profileImage: json['profile_image'] as String,
-      displayName: json['display_name'] as String,
-      link: json['link'] as String,
+      userType: json['user_type'] as String?,
+      acceptRate: json['accept_rate'] as int?,
+      profileImage: json['profile_image'] as String?,
+      displayName: json['display_name'] as String?,
+      link: json['link'] as String?,
     );
 
 Map<String, dynamic> _$QuestionOwnerToJson(QuestionOwner instance) =>

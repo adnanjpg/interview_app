@@ -18,7 +18,8 @@ class QuestionsApi {
       'sort': 'activity',
     };
 
-    final paramstr = json.encode(params);
+    final paramstr =
+        params.entries.map((e) => e.key + '=' + e.value.toString()).join('&');
 
     final request = getFullDomain() + '/' + 'questions?' + paramstr;
 

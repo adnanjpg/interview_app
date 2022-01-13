@@ -5,18 +5,18 @@ part 'question_owner.g.dart';
 class QuestionOwner {
   @JsonKey(name: 'account_id')
   final int accountId;
-  final String reputation;
+  final int? reputation;
   @JsonKey(name: 'user_id')
   final int userId;
   @JsonKey(name: 'user_type')
-  final String userType;
+  final String? userType;
   @JsonKey(name: 'accept_rate')
-  final int acceptRate;
+  final int? acceptRate;
   @JsonKey(name: 'profile_image')
-  final String profileImage;
+  final String? profileImage;
   @JsonKey(name: 'display_name')
-  final String displayName;
-  final String link;
+  final String? displayName;
+  final String? link;
 
   const QuestionOwner({
     required this.accountId,

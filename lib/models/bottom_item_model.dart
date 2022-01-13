@@ -8,11 +8,13 @@ class BottomItemModel {
   final String translationKey;
   final IconData icon;
   final Widget widget;
+  final PreferredSizeWidget? appbar;
 
   const BottomItemModel({
     required this.type,
     required this.translationKey,
     required this.icon,
     required this.widget,
+    this.appbar,
   });
 }
