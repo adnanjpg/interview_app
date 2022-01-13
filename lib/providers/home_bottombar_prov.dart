@@ -6,6 +6,7 @@ import 'package:interview/ui/home/home_wid/home_widget.dart';
 import 'package:interview/ui/home/home_wid/profile_widget.dart';
 import 'package:interview/ui/home/search_wid/search_widget.dart';
 import 'package:interview/ui/home/ask_widget.dart';
+import 'package:interview/ui/profiles/search_bar.dart';
 
 const homeBottomItems = [
   BottomItemModel(
@@ -20,6 +21,7 @@ const homeBottomItems = [
     icon: Icons.search,
     type: HomeBottombarType.search,
     widget: SearchWidget(),
+    appbar: SearchBar(),
   ),
   BottomItemModel(
     translationKey: 'ask',
