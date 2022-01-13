@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:interview/data/api/questions_api.dart';
 import 'package:interview/models/question.dart';
-import 'package:interview/ui/widgets/question_item.dart';
+import 'package:interview/utils/utils.dart';
+
+import 'question_item.dart';
 
 class QuestionList extends StatelessWidget {
   const QuestionList({Key? key}) : super(key: key);
@@ -28,7 +30,13 @@ class QuestionList extends StatelessWidget {
         }
 
         final data = snp.data as List<Question>;
-        return ListView.builder(
+        return ListView.separated(
+          separatorBuilder: (context, idx) {
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: defPaddingSize),
+              child: const Divider(),
+            );
+          },
           itemCount: pageSize,
           itemBuilder: (context, index) {
             final q = data[index];

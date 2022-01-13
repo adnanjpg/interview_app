@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
-final Map<String, String> _translations = {
+export 'life_saver_extensions.dart';
+const Map<String, String> _translations = {
   'home': 'Home',
   'search': 'Search',
   'ask': 'Ask',
   'bookmarks': 'Bookmarks',
+  'answers':'Answers',
 };
 
 /// this is going to be customized later to return
@@ -20,12 +21,12 @@ String getStr(String key) {
   return val ?? '';
 }
 
-const primary = Color(0xFF31326f),secondary =  Color(0xFF76abf1);
+const primary = Color(0xFF31326f), secondary = Color(0xFF76abf1);
 
 final ThemeData appTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     primary: primary,
-    secondary:secondary,
+    secondary: secondary,
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedItemColor: primary,
@@ -33,3 +34,6 @@ final ThemeData appTheme = ThemeData(
     showUnselectedLabels: true,
   ),
 );
+
+
+const double defPaddingSize = 16,halfDefPaddingSize  = defPaddingSize/2;
