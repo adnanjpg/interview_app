@@ -1,46 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:interview/data/api/questions_api.dart';
-import 'package:interview/models/question.dart';
-import 'package:interview/utils/utils.dart';
+import 'package:interview/paginationer/src/default_paginationer.dart';
 
 import 'question_item.dart';
+import 'package:interview/utils/utils.dart';
 
 class QuestionList extends StatelessWidget {
   const QuestionList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: pagination
-    const page = 1, pageSize = 10;
+    return Paginationer(
+      emptyChildren: const [Center(child: CircularProgressIndicator())],
+      future: (currentPage) async {
+        final data = await QuestionsApi.list(currentPage: currentPage);
 
-    return FutureBuilder(
-      future: QuestionsApi.list(currentPage: page),
-      builder: (context, snp) {
-        if (snp.hasError) {
-          return Text(snp.error.toString());
+        if (data == null || data.isEmpty) {
+          return [];
         }
 
-        if (snp.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        }
-
-        if (!snp.hasData) {
-          // in case returned null
-          return const SizedBox();
-        }
-
-        final data = snp.data as List<Question>;
-        return ListView.separated(
-          separatorBuilder: (context, idx) {
+        return data.map(
+          (q) {
+            return QuestionItem(q);
+          },
+        ).joinWidgetList(
+          (index) {
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: defPaddingSize),
               child: const Divider(),
             );
-          },
-          itemCount: pageSize,
-          itemBuilder: (context, index) {
-            final q = data[index];
-            return QuestionItem(q);
           },
         );
       },
