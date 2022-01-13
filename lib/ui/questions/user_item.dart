@@ -4,26 +4,39 @@ import 'package:interview/models/question_owner.dart';
 import 'package:intl/intl.dart';
 
 class UserItem extends StatelessWidget {
-  final Question model;
+  QuestionOwner? owner;
+  final Question? model;
   final bool isMe;
-  const UserItem({required this.model, required this.isMe, Key? key})
-      : super(key: key);
+  UserItem({this.model, this.owner, required this.isMe, Key? key})
+      : assert(
+          model != null || owner != null,
+        ),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final owner = model.owner;
+    owner ??= model?.owner;
     final imgWid = _UserImg(owner);
     return ListTile(
       leading: isMe ? null : imgWid,
       title: Text(owner?.displayName ?? ''),
-      subtitle: Builder(builder: (context) {
-        final f = DateFormat('yyyy-MM-dd');
-        final dt = model.lastEditDate;
+      subtitle: Builder(
+        builder: (context) {
+          String out = '';
 
-        final out = dt != null ? f.format(dt) : '';
+          if (isMe) {
+            // data does not provide bio, so we are using accountId
+            out = owner?.accountId.toString() ?? '';
+          } else {
+            final f = DateFormat('yyyy-MM-dd');
+            final dt = model?.lastEditDate;
 
-        return Text(out);
-      }),
+            out = dt != null ? f.format(dt) : '';
+          }
+
+          return Text(out);
+        },
+      ),
       trailing: isMe ? imgWid : null,
     );
   }

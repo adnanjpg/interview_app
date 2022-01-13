@@ -20,13 +20,13 @@ class QuestionOwner {
 
   const QuestionOwner({
     required this.accountId,
-    required this.reputation,
     required this.userId,
-    required this.userType,
-    required this.acceptRate,
-    required this.profileImage,
-    required this.displayName,
-    required this.link,
+    this.reputation,
+    this.userType,
+    this.acceptRate,
+    this.profileImage,
+    this.displayName,
+    this.link,
   });
 
   factory QuestionOwner.fromJson(Map<String, dynamic> json) =>

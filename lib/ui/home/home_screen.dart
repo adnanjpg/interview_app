@@ -11,10 +11,12 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selected = ref.watch(homeBottmbarProv);
-    return Scaffold(
-      appBar: selected.appbar ?? AppBar(),
-      body: const HomePageBuilder(),
-      bottomNavigationBar: const HomeBottomNav(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: selected.appbar ?? AppBar(),
+        body: const HomePageBuilder(),
+        bottomNavigationBar: const HomeBottomNav(),
+      ),
     );
   }
 }
