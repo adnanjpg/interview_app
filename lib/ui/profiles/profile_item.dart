@@ -11,6 +11,9 @@ class ProfileItem extends StatelessWidget {
     return SizedBox(
       width: 200,
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Column(
           children: [
             Builder(
@@ -20,8 +23,14 @@ class ProfileItem extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        Image.network(
-                          model.bgImageUrl,
+                        ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                          child: Image.network(
+                            model.bgImageUrl,
+                          ),
                         ),
                         const SizedBox(height: siz / 2),
                       ],
