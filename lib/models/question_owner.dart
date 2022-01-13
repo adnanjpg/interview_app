@@ -4,10 +4,10 @@ part 'question_owner.g.dart';
 @JsonSerializable()
 class QuestionOwner {
   @JsonKey(name: 'account_id')
-  final int accountId;
+  final int? accountId;
   final int? reputation;
   @JsonKey(name: 'user_id')
-  final int userId;
+  final int? userId;
   @JsonKey(name: 'user_type')
   final String? userType;
   @JsonKey(name: 'accept_rate')

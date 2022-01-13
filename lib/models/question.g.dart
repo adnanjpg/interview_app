@@ -18,7 +18,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
       lastActivityDate:
           Question._dateTimeFromJson(json['last_activity_date'] as int?),
       lastEditDate: Question._dateTimeFromJson(json['last_edit_date'] as int?),
-      questionId: json['question_id'] as int,
+      questionId: json['question_id'] as int?,
       contentLicense: json['content_license'] as String?,
       link: json['link'] as String?,
       title: json['title'] as String?,

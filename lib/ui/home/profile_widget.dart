@@ -14,7 +14,7 @@ class ProfileWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return UserItem(
       isMe: true,
-      owner:const QuestionOwner(
+      owner: const QuestionOwner(
         accountId: accountId,
         userId: accountId,
         displayName: name,

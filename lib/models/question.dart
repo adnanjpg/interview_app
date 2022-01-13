@@ -24,7 +24,7 @@ class Question {
   final DateTime? lastEditDate;
 
   @JsonKey(name: 'question_id')
-  final int questionId;
+  final int? questionId;
   @JsonKey(name: 'content_license')
   final String? contentLicense;
 
