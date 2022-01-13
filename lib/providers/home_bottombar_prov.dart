@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:interview/models/bottom_item_model.dart';
 import 'package:interview/ui/home/bookmarks_widget.dart';
-import 'package:interview/ui/home/home_widget.dart';
-import 'package:interview/ui/home/profile_widget.dart';
-import 'package:interview/ui/home/search_widget.dart';
+import 'package:interview/ui/home/home_wid/home_widget.dart';
+import 'package:interview/ui/home/home_wid/profile_widget.dart';
+import 'package:interview/ui/home/search_wid/search_widget.dart';
 import 'package:interview/ui/home/ask_widget.dart';
 
 const homeBottomItems = [

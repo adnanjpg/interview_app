@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 export 'life_saver_extensions.dart';
+
 const Map<String, String> _translations = {
   'home': 'Home',
   'search': 'Search',
   'ask': 'Ask',
   'bookmarks': 'Bookmarks',
-  'answers':'Answers',
+  'answers': 'Answers',
+  'follow': 'Follow',
 };
 
 /// this is going to be customized later to return
@@ -35,5 +37,4 @@ final ThemeData appTheme = ThemeData(
   ),
 );
 
-
-const double defPaddingSize = 16,halfDefPaddingSize  = defPaddingSize/2;
+const double defPaddingSize = 16, halfDefPaddingSize = defPaddingSize / 2;
