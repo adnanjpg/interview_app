@@ -8,6 +8,8 @@ const Map<String, String> _translations = {
   'bookmarks': 'Bookmarks',
   'answers': 'Answers',
   'follow': 'Follow',
+  'profile': 'Profile',
+  'post': 'Post',
 };
 
 /// this is going to be customized later to return

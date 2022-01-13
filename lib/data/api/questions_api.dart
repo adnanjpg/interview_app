@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
 import 'package:interview/data/api/api.dart';
 import 'package:interview/models/question.dart';
 import 'package:http/http.dart';
@@ -28,6 +29,7 @@ class QuestionsApi {
     );
 
     if (response.statusCode != 200) {
+      debugPrint(response.statusCode.toString());
       return null;
     }
 
