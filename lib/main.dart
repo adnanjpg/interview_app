@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:interview/ui/screens/home_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:interview/ui/screens/home/home_screen.dart';
 
 import 'utils/utils.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
