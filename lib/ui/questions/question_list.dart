@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:interview/providers/connectivity_prov.dart';
 import '../../data/api/questions_api.dart';
 import '../../models/question.dart';
 import '../../paginationer/paginationer.dart';
@@ -6,29 +9,51 @@ import '../../paginationer/paginationer.dart';
 import 'question_item.dart';
 import '../../utils/utils.dart';
 
-class QuestionList extends StatefulWidget {
+class QuestionList extends ConsumerStatefulWidget {
   final ScrollController? scrollController;
   const QuestionList({this.scrollController, Key? key}) : super(key: key);
 
   @override
-  State<QuestionList> createState() => _QuestionListState();
+  ConsumerState<QuestionList> createState() => _QuestionListState();
 }
 
-class _QuestionListState extends State<QuestionList> {
+class _QuestionListState extends ConsumerState<QuestionList> {
   final List<Question> questions = [];
 
   @override
   Widget build(BuildContext context) {
+    final connected = ref.watch(connectionProvider);
+
+    final qBox = Hive.box<Question>(questionsBoxKey);
+
     return Paginationer(
       primary: false,
       controller: widget.scrollController,
       type: PaginationerType.itemBased,
-      emptyChildren: const [Center(child: CircularProgressIndicator())],
+      emptyChildren: const [
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+      ],
       future: (currentPage) async {
-        final data = await QuestionsApi.list(currentPage: currentPage);
+        List<Question> data = [];
 
-        if (data == null || data.isEmpty) {
-          return [];
+        // if not connected and we're loading the first time, then show offline questions
+        // else return empty to not load more
+        if (!connected) {
+          if (currentPage == 1) {
+            data = qBox.values.toList();
+          }
+        } else {
+          if (currentPage == 1) {
+            // clear prev saved questions on the first load
+            qBox.clear();
+          }
+
+          data = await QuestionsApi.list(currentPage: currentPage) ?? [];
+
+          // store questions
+          qBox.addAll(data);
         }
 
         return data.map(

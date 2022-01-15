@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'ui/home/home_screen.dart';
 import 'utils/utils.dart';
 
-void main() {
+void main() async {
+  await initApp();
+
   runApp(
     const ProviderScope(
       child: MyApp(),

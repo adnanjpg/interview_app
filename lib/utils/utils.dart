@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:interview/models/question.dart';
+import 'package:interview/models/question_owner.dart';
+import 'consts.dart';
+
 export 'life_saver_extensions.dart';
+export 'consts.dart';
 
 const Map<String, String> _translations = {
   'home': 'Home',
@@ -40,3 +46,12 @@ final ThemeData appTheme = ThemeData(
 );
 
 const double defPaddingSize = 16, halfDefPaddingSize = defPaddingSize / 2;
+
+Future<void> initApp() async {
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(QuestionAdapter());
+  Hive.registerAdapter(QuestionOwnerAdapter());
+
+  await Hive.openBox<Question>(questionsBoxKey);
+}
