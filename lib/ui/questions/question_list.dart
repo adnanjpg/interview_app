@@ -20,26 +20,49 @@ class QuestionList extends ConsumerStatefulWidget {
 class _QuestionListState extends ConsumerState<QuestionList> {
   final List<Question> questions = [];
 
+  bool? isConnected;
+
+  late Key pagKey;
+  @override
+  initState() {
+    pagKey = UniqueKey();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final connected = ref.watch(connectionProvider);
 
+    {
+      if (isConnected == null) {
+        isConnected = connected;
+      } else {
+        final oldCon = isConnected;
+        isConnected = connected;
+
+        // rebuild paginationer only if went from offline to online
+        if (oldCon == false && isConnected == true) {
+          pagKey = UniqueKey();
+          setState(() {});
+        }
+      }
+    }
+
     final qBox = Hive.box<Question>(questionsBoxKey);
 
     return Paginationer(
+      key: pagKey,
       primary: false,
       controller: widget.scrollController,
       type: PaginationerType.itemBased,
       emptyChildren: const [
-        Center(
-          child: CircularProgressIndicator(),
-        ),
+        Center(child: CircularProgressIndicator()),
       ],
       future: (currentPage) async {
         List<Question> data = [];
 
         // if not connected and we're loading the first time, then show offline questions
-        // else return empty to not load more
+        // else the data will stay empty as the else case will not be executed
         if (!connected) {
           if (currentPage == 1) {
             data = qBox.values.toList();

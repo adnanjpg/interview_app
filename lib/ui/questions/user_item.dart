@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview/ui/widgets/custom_avatar.dart';
 import '../../models/question.dart';
 import '../../models/question_owner.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +17,7 @@ class UserItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _owner = owner ?? model?.owner;
-    final imgWid = _UserImg(_owner);
+    final imgWid = CustomAvatar(_owner?.profileImage);
     return ListTile(
       leading: isMe ? null : imgWid,
       title: Text(_owner?.displayName ?? ''),
@@ -38,29 +39,6 @@ class UserItem extends StatelessWidget {
         },
       ),
       trailing: isMe ? imgWid : null,
-    );
-  }
-}
-
-class _UserImg extends StatelessWidget {
-  final QuestionOwner? model;
-
-  const _UserImg(this.model, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        final img = model?.profileImage;
-        if (img == null) {
-          return CircleAvatar(
-            backgroundColor: Theme.of(context).colorScheme.primary,
-          );
-        }
-        return CircleAvatar(
-          backgroundImage: NetworkImage(img),
-        );
-      },
     );
   }
 }

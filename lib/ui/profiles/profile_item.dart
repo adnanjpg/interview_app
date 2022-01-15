@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interview/ui/widgets/custom_avatar.dart';
 import '../../models/profile_model.dart';
 import '../../utils/utils.dart';
 
@@ -28,21 +29,19 @@ class ProfileItem extends StatelessWidget {
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
                           ),
-                          child: Image.network(
-                            model.bgImageUrl,
-                          ),
+                          child: CustomImageLoader(model.bgImageUrl),
                         ),
                         const SizedBox(height: siz / 2),
                       ],
                     ),
                     Positioned(
                       bottom: 0,
-                      left: 0,
                       right: 0,
-                      height: siz,
-                      child: CircleAvatar(
-                        foregroundImage: NetworkImage(
+                      left: 0,
+                      child: Center(
+                        child: CustomAvatar(
                           model.imageUrl,
+                          size: const Size(siz, siz),
                         ),
                       ),
                     ),
